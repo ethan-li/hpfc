@@ -15,7 +15,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='folder-compare',
+    name='hpfc-tool',
     version=about['__version__'],
     description='A high-performance directory comparison tool',
     long_description=long_description,

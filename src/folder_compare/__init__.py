@@ -1,5 +1,5 @@
 """
-Folder Compare
+HPFC: High-Performance Folder Compare
 
 A high-performance tool for comparing directories and files.
 """

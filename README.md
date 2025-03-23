@@ -1,4 +1,4 @@
-# Folder Compare
+# HPFC: High-Performance Folder Compare
 
 A high-performance command-line tool for comparing directories and generating detailed reports on file differences.
 This tool supports cross-platform operation (Windows, Linux, and macOS) and can efficiently handle large volumes of files and large file sizes.
@@ -23,8 +23,10 @@ This tool supports cross-platform operation (Windows, Linux, and macOS) and can 
 ### Using pip
 
 ```bash
-pip install folder-compare
+pip install hpfc-tool
 ```
+
+> **Note:** While the package name is `hpfc-tool`, the command-line tool is still called `folder-compare`.
 
 ### From source
 
@@ -115,7 +117,7 @@ SKIP_LARGE_FILE_TEST=1 python -m unittest discover -s tests
 ## Project Structure
 
 ```
-folder-compare/
+hpfc-tool/
 ├── src/
 │   └── folder_compare/
 │       ├── __init__.py    # Package initialization
