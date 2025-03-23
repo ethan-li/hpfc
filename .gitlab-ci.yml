@@ -1,0 +1,74 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+
+cache:
+  paths:
+    - .pip-cache/
+
+# Test with Python 3.6
+test:python3.6:
+  stage: test
+  image: python:3.6
+  script:
+    - pip install -e .[dev]
+    - python -m unittest discover -s tests
+
+# Test with Python 3.9
+test:python3.9:
+  stage: test
+  image: python:3.9
+  script:
+    - pip install -e .[dev]
+    - python -m unittest discover -s tests
+
+# Test with all features
+test:full:
+  stage: test
+  image: python:3.9
+  script:
+    - pip install -e .[dev]
+    - python -m unittest discover -s tests
+  only:
+    - master
+    - main
+    - tags
+
+# Static code analysis
+lint:
+  stage: test
+  image: python:3.9
+  script:
+    - pip install flake8 mypy
+    - flake8 src tests
+    - mypy --ignore-missing-imports src
+  allow_failure: true
+
+# Build Python package
+build:wheel:
+  stage: build
+  image: python:3.9
+  script:
+    - pip install build twine
+    - python -m build
+    - twine check dist/*
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - tags
+
+# Build and deploy to PyPI
+deploy:pypi:
+  stage: deploy
+  image: python:3.9
+  script:
+    - pip install twine
+    - twine upload dist/*
+  only:
+    - tags
+  when: manual 
