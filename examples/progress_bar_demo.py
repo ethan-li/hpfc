@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Progress Bar Demo - Folder Compare Tool
+Progress Bar Demo - HPFC Tool
 
-This script demonstrates the progress bar functionality in the Folder Compare tool.
+This script demonstrates the progress bar functionality in the HPFC tool.
 It creates two test directories with multiple files and performs a comparison,
 showing the actual effect of the progress bar.
 """
@@ -15,7 +15,7 @@ import random
 
 # Add parent directory to path to import the package
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src.folder_compare.core import FolderCompare
+from src.hpfc.core import DirectoryComparer
 
 
 def create_test_directories(num_files=100):
@@ -71,7 +71,7 @@ def main():
         print()
         
         # Compare with progress bar (default behavior)
-        comparer = FolderCompare(dir1, dir2, show_progress=True)
+        comparer = DirectoryComparer(dir1, dir2, show_progress=True)
         results = comparer.compare()
         
         # Print summary
@@ -85,7 +85,7 @@ def main():
         print(f"Comparing the same directories without progress bar:")
         
         # Compare without progress bar
-        comparer = FolderCompare(dir1, dir2, show_progress=False)
+        comparer = DirectoryComparer(dir1, dir2, show_progress=False)
         results = comparer.compare()
         
         # Print summary

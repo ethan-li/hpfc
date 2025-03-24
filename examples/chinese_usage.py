@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
-目录比较工具 - 中文使用示例
+HPFC工具 - 中文使用示例
 
-这个脚本展示了如何使用folder-compare工具来比较目录，
+这个脚本展示了如何使用hpfc工具来比较目录，
 并生成报告，同时展示了命令行参数的设置。
 """
 
@@ -17,7 +17,7 @@ from pathlib import Path
 
 # 将父目录添加到路径中，以便导入包
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src.folder_compare.core import FolderCompare
+from src.hpfc.core import DirectoryComparer
 
 
 def parse_args():
@@ -163,7 +163,7 @@ def main():
         print("=" * 60)
         
         # 创建比较器实例
-        comparer = FolderCompare(
+        comparer = DirectoryComparer(
             dir1, 
             dir2, 
             chunk_size=args.chunk_size,

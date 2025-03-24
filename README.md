@@ -26,13 +26,13 @@ This tool supports cross-platform operation (Windows, Linux, and macOS) and can 
 pip install hpfc-tool
 ```
 
-> **Note:** While the package name is `hpfc-tool`, the command-line tool is still called `folder-compare`.
+> **Note:** The package name is `hpfc-tool` and the command-line tool is `hpfc`.
 
 ### From source
 
 ```bash
-git clone https://github.com/yourusername/folder-compare.git
-cd folder-compare
+git clone https://github.com/yourusername/hpfc.git
+cd hpfc
 pip install .
 ```
 
@@ -41,13 +41,13 @@ pip install .
 ### Basic Usage
 
 ```bash
-folder-compare directory1 directory2
+hpfc directory1 directory2
 ```
 
 ### Advanced Options
 
 ```bash
-folder-compare directory1 directory2 [options]
+hpfc directory1 directory2 [options]
 ```
 
 Options:
@@ -63,32 +63,32 @@ Options:
 
 Compare two directories:
 ```bash
-folder-compare /path/to/dir1 /path/to/dir2
+hpfc /path/to/dir1 /path/to/dir2
 ```
 
 Ignore specific files or directories:
 ```bash
-folder-compare /path/to/dir1 /path/to/dir2 --ignore ".git" "*.log" "temp"
+hpfc /path/to/dir1 /path/to/dir2 --ignore ".git" "*.log" "temp"
 ```
 
 Adjust chunk size for large file comparison:
 ```bash
-folder-compare /path/to/dir1 /path/to/dir2 --chunk-size 16777216  # 16MB
+hpfc /path/to/dir1 /path/to/dir2 --chunk-size 16777216  # 16MB
 ```
 
 Specify number of worker processes:
 ```bash
-folder-compare /path/to/dir1 /path/to/dir2 --workers 4
+hpfc /path/to/dir1 /path/to/dir2 --workers 4
 ```
 
 Save report to file:
 ```bash
-folder-compare /path/to/dir1 /path/to/dir2 --output report.txt
+hpfc /path/to/dir1 /path/to/dir2 --output report.txt
 ```
 
 Generate HTML report:
 ```bash
-folder-compare /path/to/dir1 /path/to/dir2 --html --output report.html
+hpfc /path/to/dir1 /path/to/dir2 --html --output report.html
 ```
 
 ### Exit Codes
@@ -119,12 +119,12 @@ SKIP_LARGE_FILE_TEST=1 python -m unittest discover -s tests
 ```
 hpfc-tool/
 ├── src/
-│   └── folder_compare/
+│   └── hpfc/
 │       ├── __init__.py    # Package initialization
 │       ├── core.py        # Core comparison functionality
 │       └── cli.py         # Command-line interface
 ├── tests/
-│   └── test_folder_compare.py  # Test cases
+│   └── test_hpfc.py       # Test cases
 ├── setup.py               # Package setup
 └── README.md              # Documentation
 ```

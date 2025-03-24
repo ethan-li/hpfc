@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Basic usage examples for the folder-compare tool.
-This script demonstrates how to use the folder-compare package in your own code.
+Basic usage examples for the HPFC tool.
+This script demonstrates how to use the HPFC package in your own code.
 """
 
 import os
 import tempfile
 import shutil
-from folder_compare.core import compare_folders, generate_html_report
+from hpfc.core import DirectoryComparer
 
 def create_test_directories():
     """Create temporary test directories with some files for comparison"""
@@ -57,31 +57,31 @@ def example_basic_comparison():
         print(f"Comparing directories:\n  {dir1}\n  {dir2}\n")
         
         # Perform comparison with default settings
-        result = compare_folders(dir1, dir2)
+        comparer = DirectoryComparer(dir1, dir2)
+        result = comparer.compare()
         
         # Print comparison summary
         print("Comparison Summary:")
-        print(f"  Total files in dir1: {len(result.dir1_files)}")
-        print(f"  Total files in dir2: {len(result.dir2_files)}")
-        print(f"  Identical files: {len(result.identical_files)}")
-        print(f"  Different files: {len(result.different_files)}")
-        print(f"  Missing files (in dir2): {len(result.missing_files)}")
-        print(f"  Extra files (in dir2): {len(result.extra_files)}")
+        print(f"  Total files compared: {result['total_files_processed']}")
+        print(f"  Identical files: {len(result['identical_files'])}")
+        print(f"  Different files: {len(result['different_files'])}")
+        print(f"  Missing files (in dir2): {len(result['missing_files'])}")
+        print(f"  Extra files (in dir2): {len(result['extra_files'])}")
         
         # Print detailed results
-        if result.different_files:
+        if result['different_files']:
             print("\nFiles with different content:")
-            for path in result.different_files:
+            for path in result['different_files']:
                 print(f"  - {path}")
         
-        if result.missing_files:
+        if result['missing_files']:
             print("\nFiles missing from dir2:")
-            for path in result.missing_files:
+            for path in result['missing_files']:
                 print(f"  - {path}")
         
-        if result.extra_files:
+        if result['extra_files']:
             print("\nExtra files in dir2:")
-            for path in result.extra_files:
+            for path in result['extra_files']:
                 print(f"  - {path}")
     finally:
         # Clean up temporary directories
@@ -97,11 +97,16 @@ def example_html_report():
         print(f"Comparing directories:\n  {dir1}\n  {dir2}")
         
         # Perform comparison
-        result = compare_folders(dir1, dir2)
+        comparer = DirectoryComparer(dir1, dir2)
+        result = comparer.compare()
         
         # Generate HTML report
         report_path = "comparison_report.html"
-        generate_html_report(result, dir1, dir2, report_path)
+        html_report = comparer.generate_html_report(result)
+        
+        # Save the report to a file
+        with open(report_path, "w", encoding="utf-8") as f:
+            f.write(html_report)
         
         print(f"\nHTML report generated: {os.path.abspath(report_path)}")
         print("You can open this file in a web browser to view the detailed comparison report.")
@@ -119,19 +124,20 @@ def example_with_custom_settings():
         print(f"Comparing directories with custom settings:\n  {dir1}\n  {dir2}")
         
         # Custom comparison with larger chunk size and ignore pattern
-        result = compare_folders(
+        comparer = DirectoryComparer(
             dir1, 
             dir2,
             chunk_size=1024 * 1024,  # 1MB chunks
-            workers=2,               # Use 2 worker processes
-            ignore=["only_in"]       # Ignore files containing "only_in" in their name
+            max_workers=2,           # Use 2 worker processes
+            ignore_patterns=["only_in"]  # Ignore files containing "only_in" in their name
         )
+        result = comparer.compare()
         
         print("\nComparison Summary (ignoring files with 'only_in' in their name):")
-        print(f"  Identical files: {len(result.identical_files)}")
-        print(f"  Different files: {len(result.different_files)}")
-        print(f"  Missing files (in dir2): {len(result.missing_files)}")
-        print(f"  Extra files (in dir2): {len(result.extra_files)}")
+        print(f"  Identical files: {len(result['identical_files'])}")
+        print(f"  Different files: {len(result['different_files'])}")
+        print(f"  Missing files (in dir2): {len(result['missing_files'])}")
+        print(f"  Extra files (in dir2): {len(result['extra_files'])}")
     finally:
         # Clean up temporary directories
         shutil.rmtree(dir1)

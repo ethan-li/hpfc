@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 # Get version from package
 about = {}
 here = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(here, 'src', 'folder_compare', '__init__.py'), 'r', encoding='utf-8') as f:
+with open(os.path.join(here, 'src', 'hpfc', '__init__.py'), 'r', encoding='utf-8') as f:
     exec(f.read(), about)
 
 # Read the README file for the long description
@@ -42,7 +42,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'folder-compare=folder_compare.cli:main',
+            'hpfc=hpfc.cli:main',
         ],
     },
     classifiers=[
