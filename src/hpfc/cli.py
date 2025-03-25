@@ -17,10 +17,10 @@ from .__init__ import __version__
 def main():
     """Main function, handles command line arguments and executes comparison"""
     parser = argparse.ArgumentParser(
-        description="Compare files in two directories and generate a report."
+        description="Compare files in two folders and generate a report."
     )
-    parser.add_argument("dir1", help="Path to the first directory")
-    parser.add_argument("dir2", help="Path to the second directory")
+    parser.add_argument("dir1", help="Path to the first folder")
+    parser.add_argument("dir2", help="Path to the second folder")
     parser.add_argument(
         "-c",
         "--chunk-size",
@@ -53,11 +53,11 @@ def main():
 
     # Validate directories
     if not os.path.isdir(args.dir1):
-        print(f"Error: Directory does not exist - {args.dir1}")
+        print(f"Error: Folder does not exist - {args.dir1}")
         return 1
 
     if not os.path.isdir(args.dir2):
-        print(f"Error: Directory does not exist - {args.dir2}")
+        print(f"Error: Folder does not exist - {args.dir2}")
         return 1
 
     # Create the comparer and execute comparison

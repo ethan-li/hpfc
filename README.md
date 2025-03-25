@@ -1,20 +1,20 @@
 # HPFC: High-Performance Folder Compare
 
-A high-performance command-line tool for comparing directories and generating detailed reports on file differences.
+A high-performance command-line tool for comparing folders and generating detailed reports on file differences.
 This tool supports cross-platform operation (Windows, Linux, and macOS) and can efficiently handle large volumes of files and large file sizes.
 
 ## Features
 
-- Compare files in two directories for content differences
+- Compare files in two folders for content differences
 - Detect and report three types of inconsistencies:
   - Files with different content
-  - Missing files (present in dir1 but not in dir2)
-  - Extra files (present in dir2 but not in dir1)
+  - Missing files (present in folder1 but not in folder2)
+  - Extra files (present in folder2 but not in folder1)
 - Cross-platform support (Windows, Linux, and macOS)
 - Uses chunked hash comparison algorithm for efficient handling of large files (up to tens of GB)
 - Multi-process parallel processing for improved performance
-- File and directory ignore patterns
-- Detailed reports in both text and HTML formats
+- File and folder ignore patterns
+- Detailed reports in both text and HTML formats with GitHub and PyPI links
 - Interactive progress bar with ETA display
 - Handles tens or hundreds of thousands of files efficiently
 
@@ -31,7 +31,7 @@ pip install hpfc-tool
 ### From source
 
 ```bash
-git clone https://github.com/yourusername/hpfc.git
+git clone https://github.com/ethan-li/hpfc.git
 cd hpfc
 pip install .
 ```
@@ -41,13 +41,13 @@ pip install .
 ### Basic Usage
 
 ```bash
-hpfc directory1 directory2
+hpfc folder1 folder2
 ```
 
 ### Advanced Options
 
 ```bash
-hpfc directory1 directory2 [options]
+hpfc folder1 folder2 [options]
 ```
 
 Options:
@@ -61,34 +61,34 @@ Options:
 
 ### Examples
 
-Compare two directories:
+Compare two folders:
 ```bash
-hpfc /path/to/dir1 /path/to/dir2
+hpfc /path/to/folder1 /path/to/folder2
 ```
 
-Ignore specific files or directories:
+Ignore specific files or folders:
 ```bash
-hpfc /path/to/dir1 /path/to/dir2 --ignore ".git" "*.log" "temp"
+hpfc /path/to/folder1 /path/to/folder2 --ignore ".git" "*.log" "temp"
 ```
 
 Adjust chunk size for large file comparison:
 ```bash
-hpfc /path/to/dir1 /path/to/dir2 --chunk-size 16777216  # 16MB
+hpfc /path/to/folder1 /path/to/folder2 --chunk-size 16777216  # 16MB
 ```
 
 Specify number of worker processes:
 ```bash
-hpfc /path/to/dir1 /path/to/dir2 --workers 4
+hpfc /path/to/folder1 /path/to/folder2 --workers 4
 ```
 
 Save report to file:
 ```bash
-hpfc /path/to/dir1 /path/to/dir2 --output report.txt
+hpfc /path/to/folder1 /path/to/folder2 --output report.txt
 ```
 
 Generate HTML report:
 ```bash
-hpfc /path/to/dir1 /path/to/dir2 --html --output report.html
+hpfc /path/to/folder1 /path/to/folder2 --html --output report.html
 ```
 
 ### Exit Codes
@@ -134,4 +134,13 @@ hpfc-tool/
 - This tool is specifically designed for handling large volumes of files and large file sizes
 - Binary and text files are compared in the same way (exact content comparison)
 - Ignore patterns use simple substring matching, not wildcards or regular expressions
-- HTML reports provide an interactive and visual representation of comparison results 
+- HTML reports provide an interactive and visual representation of comparison results
+
+## Links
+
+- GitHub: [https://github.com/ethan-li/hpfc](https://github.com/ethan-li/hpfc)
+- PyPI: [https://pypi.org/project/hpfc-tool/](https://pypi.org/project/hpfc-tool/)
+
+## Author
+
+- **Ethan Li** - *Initial work and maintenance* 
