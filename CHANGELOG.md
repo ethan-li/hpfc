@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2025-03-24
+
+### Changed
+- Unified terminology: replaced all references to "Directory" with "Folder" throughout the codebase and documentation
+- Added author name and project links to both text and HTML reports
+- Enhanced HTML report footer with stylized GitHub and PyPI links
+- Improved report layout and visualization
+
 ## [0.1.1] - 2025-03-23
 
 ### Added
